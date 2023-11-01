@@ -21,7 +21,7 @@ def build_tram_lines(lines):
         rows = csv.reader(infile, delimiter='\t')
         rows.__next__()
 
-        print(data)
+        
 
 
 
