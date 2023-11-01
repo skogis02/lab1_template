@@ -1,6 +1,6 @@
 import sys
 import json
-
+import csv
 
 # files given
 STOP_FILE = './data/tramstops.json'
@@ -12,13 +12,18 @@ TRAM_FILE = './tramnetwork.json'
 def build_tram_stops(jsonobject):
     with open(jsonobject, 'r') as infile:
         data = json.load(infile)
-        stop_dictionary = {tramstops:  dict(lat = float(data[tramstops]['position'][0]),lon = float(data[tramstops]['position'][1])) for tramstops in data}
+        stop_dictionary = {tramstops:  dict(lat = float(data[tramstops]['position'][0]),lon = float(data[tramstops]['position'][1])) for tramstops in data}                         
         print(stop_dictionary)
     
 
 def build_tram_lines(lines):
-    ## YOUR CODE HERE
-    pass
+    with open(lines, 'r') as infile:
+        rows = csv.reader(infile, delimiter='\t')
+        rows.__next__()
+
+        print(data)
+
+
 
 def build_tram_network(stopfile, linefile):
     ## YOUR CODE HERE
@@ -53,5 +58,6 @@ if __name__ == '__main__':
         build_tram_network(STOP_FILE,LINE_FILE)
     else:
         dialogue()
-        
-    build_tram_stops(STOP_FILE)
+     
+
+build_tram_lines(LINE_FILE)
