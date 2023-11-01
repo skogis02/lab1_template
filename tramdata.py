@@ -10,8 +10,11 @@ LINE_FILE = './data/tramlines.txt'
 TRAM_FILE = './tramnetwork.json'
 
 def build_tram_stops(jsonobject):
-    ## YOUR CODE HERE
-    pass
+    with open(jsonobject, 'r') as infile:
+        data = json.load(infile)
+        stop_dictionary = {tramstops:  dict(lat = float(data[tramstops]['position'][0]),lon = float(data[tramstops]['position'][1])) for tramstops in data}
+        print(stop_dictionary)
+    
 
 def build_tram_lines(lines):
     ## YOUR CODE HERE
@@ -51,3 +54,4 @@ if __name__ == '__main__':
     else:
         dialogue()
         
+    build_tram_stops(STOP_FILE)
