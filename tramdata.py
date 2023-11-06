@@ -18,8 +18,15 @@ def build_tram_stops(jsonobject):
 
 def build_tram_lines(lines):
     with open(lines, 'r') as infile:
-        rows = csv.reader(infile, delimiter='\t')
-        rows.__next__()
+        content = infile.read()
+        list = content.split()
+        for i in list:
+            if i[0].isdigit() and i[1] == ':':
+                print("hej")
+            elif i[0].isalpha():
+                
+        
+        
 
         
 
