@@ -17,14 +17,32 @@ def build_tram_stops(jsonobject):
     
 
 def build_tram_lines(lines):
-    with open(lines, 'r') as infile:
-        content = infile.read()
-        list = content.split()
-        for i in list:
-            if i[0].isdigit() and i[1] == ':':
-                print("hej")
-            elif i[0].isalpha():
+    line_dictionary = {}
+    line_times = {}
+    stop_last = None
+    last_time = None
+    with open(lines, 'r') as linefile:
+        for line in linefile:
+            line = line.strip()
+            if not line:
+                continue
+            elif line[-1] == ":":
+                current_line = line[:-1]
+                line_dictionary[current_line] = []
+            elif current_line:
+                stop_name = " ".join(line.split()[:-1])
+                line_dictionary[current_line].append(stop_name)
+                stop_time_str = line.split()[:-1]
+                stop_time = int(stop_time_str.split(':')[1])
                 
+                if stop_last:
+                    transport_time = (stop_last - last_time)%60
+                    if stop_last not in line_times:
+                        line_times[stop_last] = {}
+                    line_times[stop_last][stop_name]=transport_time
+       
+    desired_key = '2'
+    print(line_dictionary[desired_key])
         
         
 
